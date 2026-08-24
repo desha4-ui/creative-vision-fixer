@@ -1,4 +1,4 @@
-import { AnimatedWords } from "@/components/motion-text";
+import { AnimatedWords, Tilt } from "@/components/motion-text";
 import { Reveal } from "@/components/reveal";
 import type { Project } from "@/data/projects";
 
@@ -6,7 +6,8 @@ export function ProjectSlide({ project }: { project: Project }) {
   const imageFirst = project.layout === "image-left";
 
   return (
-    <article className="slide-card card-hover dot-grid group overflow-hidden px-5 py-6 hover:shadow-[0_32px_70px_-30px_oklch(0.28_0.05_265_/_0.4)] sm:px-8 sm:py-9">
+    <Tilt max={4}>
+      <article className="slide-card card-hover dot-grid group overflow-hidden px-5 py-6 hover:shadow-[0_32px_70px_-30px_oklch(0.28_0.05_265_/_0.4)] sm:px-8 sm:py-9">
       <div
         className={`grid items-center gap-7 lg:grid-cols-[1.35fr_0.65fr] ${imageFirst ? "" : "lg:[&>*:first-child]:order-2"}`}
       >
@@ -18,7 +19,7 @@ export function ProjectSlide({ project }: { project: Project }) {
               width={1400}
               height={900}
               loading="lazy"
-              className="h-full w-full object-cover"
+              className="sd-grow h-full w-full object-cover"
             />
           </div>
         </Reveal>
