@@ -4,6 +4,7 @@ import { About } from "@/components/about";
 import { Breakdown } from "@/components/breakdown";
 import { Contact } from "@/components/contact";
 import { Hero } from "@/components/hero";
+import { AnimatedChars } from "@/components/motion-text";
 import { ProjectSlide } from "@/components/project-slide";
 import { Reveal } from "@/components/reveal";
 import { Services } from "@/components/services";
@@ -38,25 +39,29 @@ function Index() {
 
         <section id="work" className="px-4 py-8 sm:px-6 lg:py-12">
           <div className="mx-auto max-w-6xl space-y-4">
-            <Reveal>
-              <div className="flex flex-wrap items-end justify-between gap-4 px-2">
+            <div className="dot-grid relative overflow-hidden rounded-[2rem] px-2 py-8 sm:py-12">
+              <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold tracking-[0.2em] text-brand-orange uppercase">
                     Selected work
                   </p>
-                  <h2 className="mt-3 font-display text-4xl font-extrabold sm:text-5xl">
-                    Projects &amp; case studies
-                  </h2>
+                  <AnimatedChars
+                    as="h2"
+                    text="Portfolio"
+                    pillIndex={5}
+                    stagger={44}
+                    className="display-xl mt-4 block"
+                  />
                 </div>
-                <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+                <p className="sd-rise max-w-sm text-sm leading-relaxed text-muted-foreground">
                   EHR platforms, telehealth and remote monitoring, HL7/FHIR interoperability, and
                   patient-facing portals.
                 </p>
               </div>
-            </Reveal>
+            </div>
 
             {projects.map((project) => (
-              <Reveal key={project.slug}>
+              <Reveal key={project.slug} variant="tilt">
                 <ProjectSlide project={project} />
               </Reveal>
             ))}
