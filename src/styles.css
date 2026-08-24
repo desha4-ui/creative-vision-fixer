@@ -483,3 +483,144 @@
   }
 }
 
+/* ---------------------------------------------------------------
+ * Editorial display type (Behance ref: oversized geometric words
+ * with a stadium "o" glyph) + deeper scroll motion
+ * --------------------------------------------------------------- */
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.82;
+  font-size: clamp(3.4rem, 13vw, 11rem);
+  text-transform: none;
+}
+
+/* Stadium glyph that stands in for a letter "o" in display words. */
+@utility glyph-o {
+  display: inline-block;
+  width: 1.55em;
+  height: 0.56em;
+  border: 0.15em solid currentColor;
+  border-radius: 999em;
+  vertical-align: 0.06em;
+  margin-inline: 0.06em;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glyph-host:hover .glyph-o {
+  width: 2.1em;
+}
+
+/* Character-level headline reveal ------------------------------- */
+
+.char-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.char-mask > span {
+  display: inline-block;
+  transform: translateY(110%) rotate(6deg) scale(0.94);
+  opacity: 0;
+  transition:
+    transform 1s cubic-bezier(0.16, 1, 0.22, 1),
+    opacity 0.8s ease;
+}
+
+.char-in .char-mask > span {
+  transform: none;
+  opacity: 1;
+}
+
+/* Pointer-tilt cards ------------------------------------------- */
+
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Sticky stacking slides --------------------------------------- */
+
+.stack-item {
+  position: sticky;
+  top: 5.5rem;
+}
+
+/* Reversed marquee lane ---------------------------------------- */
+
+@utility marquee-back {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite reverse;
+}
+
+/* Scroll-driven progressive motion (native where supported) ----- */
+
+@keyframes sdRise {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sdFloatUp {
+  from {
+    transform: translateY(7%);
+  }
+  to {
+    transform: translateY(-7%);
+  }
+}
+
+@keyframes sdGrow {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .sd-rise {
+    animation: sdRise linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 65%;
+  }
+
+  .sd-parallax {
+    animation: sdFloatUp linear both;
+    animation-timeline: view();
+    animation-range: cover;
+  }
+
+  .sd-grow {
+    animation: sdGrow linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .char-mask > span,
+  .sd-rise,
+  .sd-parallax,
+  .sd-grow,
+  .marquee-back,
+  .tilt {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
