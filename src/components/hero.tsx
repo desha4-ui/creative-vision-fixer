@@ -28,14 +28,14 @@ export function Hero() {
                 Available for healthcare software projects · Q3 2026
               </p>
 
-              <h1 className="mt-6 font-display text-5xl leading-[0.95] font-extrabold sm:text-6xl lg:text-7xl">
-                <AnimatedWords text="Mostafa Samir" as="span" delay={120} />
+              <h1 className="mt-6 font-display text-5xl leading-[0.9] font-extrabold tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+                <AnimatedChars text="Mostafa Samir" as="span" delay={120} stagger={38} />
                 <br />
                 <AnimatedWords
                   text="Healthcare Full-Stack Engineer."
                   as="span"
                   className="text-brand-orange"
-                  delay={320}
+                  delay={520}
                 />
               </h1>
 
