@@ -95,16 +95,18 @@ export function Hero() {
                 className="float-slow absolute inset-x-10 top-14 bottom-4 rounded-[2.5rem] bg-brand-sky/35"
                 style={{ animationDelay: "-2.5s" }}
               />
-              <div className="float-slow relative" style={{ animationDelay: "-1.2s" }}>
-                <img
-                  src={portrait}
-                  alt="Illustrated portrait of Mostafa Samir, a healthcare full-stack engineer"
-                  width={1024}
-                  height={1024}
-                  className="sticker-in relative mx-auto w-full max-w-sm rounded-[2rem] drop-shadow-[0_18px_30px_rgba(0,0,0,0.16)]"
-                  style={{ animationDelay: "260ms" }}
-                />
-              </div>
+              <Parallax strength={-34}>
+                <div className="float-slow relative" style={{ animationDelay: "-1.2s" }}>
+                  <img
+                    src={portrait}
+                    alt="Illustrated portrait of Mostafa Samir, a healthcare full-stack engineer"
+                    width={1024}
+                    height={1024}
+                    className="sticker-in relative mx-auto w-full max-w-sm rounded-[2rem] drop-shadow-[0_18px_30px_rgba(0,0,0,0.16)]"
+                    style={{ animationDelay: "260ms" }}
+                  />
+                </div>
+              </Parallax>
               <p className="relative mt-2 text-center font-display text-sm font-bold">
                 EHR · FHIR · Telehealth · Cloud
               </p>
@@ -112,17 +114,32 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-4 overflow-hidden rounded-full border border-border bg-card py-3">
-          <div className="marquee-track gap-8 px-4">
-            {[...tools, ...tools].map((tool, i) => (
-              <span
-                key={`${tool}-${i}`}
-                className="flex shrink-0 items-center gap-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase transition-colors hover:text-brand-orange"
-              >
-                <span className="size-1.5 rounded-full bg-brand-orange" />
-                {tool}
-              </span>
-            ))}
+        <div className="mt-4 space-y-2">
+          <div className="overflow-hidden rounded-full border border-border bg-card py-3">
+            <div className="marquee-track gap-8 px-4">
+              {[...tools, ...tools].map((tool, i) => (
+                <span
+                  key={`${tool}-${i}`}
+                  className="flex shrink-0 items-center gap-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase transition-colors hover:text-brand-orange"
+                >
+                  <span className="size-1.5 rounded-full bg-brand-orange" />
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-full border border-border bg-secondary/60 py-2.5">
+            <div className="marquee-back gap-8 px-4">
+              {[...tools.slice().reverse(), ...tools.slice().reverse()].map((tool, i) => (
+                <span
+                  key={`back-${tool}-${i}`}
+                  className="flex shrink-0 items-center gap-3 text-xs font-semibold tracking-[0.18em] text-muted-foreground uppercase"
+                >
+                  <span className="size-1 rounded-full bg-brand-teal" />
+                  {tool}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
