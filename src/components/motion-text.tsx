@@ -50,7 +50,7 @@ export function CountUp({
 }) {
   const { ref, inView } = useInView<HTMLSpanElement>();
   const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/);
-  const target = match ? Number(match[2].replace(/[,.]/g, "")) : 0;
+  const target = match?.[2] ? Number(match[2].replace(/[,.]/g, "")) : 0;
   const [display, setDisplay] = useState(0);
   const frame = useRef<number>(0);
 
