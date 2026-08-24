@@ -126,3 +126,85 @@ export function Magnetic({
     </span>
   );
 }
+
+/**
+ * Character-by-character display reveal for the oversized editorial
+ * headlines in the reference: each glyph rises from behind a mask.
+ * A "o" in the text can be swapped for the stadium glyph via `pillIndex`.
+ */
+export function AnimatedChars({
+  text,
+  as: Tag = "span",
+  className = "",
+  delay = 0,
+  stagger = 34,
+  pillIndex,
+}: {
+  text: string;
+  as?: ElementType;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+  /** Index of the character to render as the stadium glyph. */
+  pillIndex?: number;
+}) {
+  const { ref, inView } = useInView<HTMLSpanElement>();
+  const chars = [...text];
+
+  return (
+    <Tag className={`glyph-host ${className} ${inView ? "char-in" : ""}`}>
+      <span ref={ref} aria-label={text}>
+        {chars.map((char, i) =>
+          char === " " ? (
+            <span key={`sp-${i}`} aria-hidden>
+              {"\u00A0"}
+            </span>
+          ) : (
+            <span className="char-mask" key={`${char}-${i}`} aria-hidden>
+              <span style={{ transitionDelay: `${delay + i * stagger}ms` }}>
+                {i === pillIndex ? <span className="glyph-o" /> : char}
+              </span>
+            </span>
+          ),
+        )}
+      </span>
+    </Tag>
+  );
+}
+
+/** Card that leans in 3D toward the pointer. */
+export function Tilt({
+  children,
+  className = "",
+  max = 6,
+}: {
+  children: ReactNode;
+  className?: string;
+  max?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={ref}
+      className={`tilt ${className}`}
+      onPointerMove={(event) => {
+        const el = ref.current;
+        if (!el || event.pointerType !== "mouse") return;
+        const rect = el.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        el.style.transition = "transform 0.15s linear";
+        el.style.transform = `perspective(1400px) rotateY(${x * max}deg) rotateX(${-y * max}deg) translateZ(0)`;
+      }}
+      onPointerLeave={() => {
+        const el = ref.current;
+        if (!el) return;
+        el.style.transition = "transform 0.7s cubic-bezier(0.22,1,0.36,1)";
+        el.style.transform = "none";
+      }}
+    >
+      {children}
+    </div>
+  );
+}
