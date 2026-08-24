@@ -119,6 +119,7 @@ export function ProjectSlide({ project }: { project: Project }) {
           </div>
         </Reveal>
       )}
-    </article>
+      </article>
+    </Tilt>
   );
 }
