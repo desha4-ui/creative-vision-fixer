@@ -1,5 +1,6 @@
 import portrait from "@/assets/portrait-dev.png";
-import { AnimatedWords, CountUp, Magnetic } from "@/components/motion-text";
+import { AnimatedChars, AnimatedWords, CountUp, Magnetic } from "@/components/motion-text";
+import { Parallax } from "@/components/reveal";
 import { stats, tools } from "@/data/projects";
 
 export function Hero() {
