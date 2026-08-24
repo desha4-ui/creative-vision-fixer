@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ElementType,
+  type ReactNode,
+} from "react";
 
 import { useInView } from "@/components/reveal";
 
@@ -49,23 +56,27 @@ export function CountUp({
   duration?: number;
 }) {
   const { ref, inView } = useInView<HTMLSpanElement>();
-  const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/);
+  const match = useMemo(() => value.match(/^([^\d]*)([\d,.]+)(.*)$/), [value]);
   const target = match?.[2] ? Number(match[2].replace(/[,.]/g, "")) : 0;
   const [display, setDisplay] = useState(0);
   const frame = useRef<number>(0);
 
   useEffect(() => {
-    if (!inView || !match) return;
+    if (!inView || !target) return;
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       setDisplay(Math.round(target * eased));
-      if (p < 1) frame.current = requestAnimationFrame(tick);
+      if (p < 1) {
+        frame.current = requestAnimationFrame(tick);
+      } else {
+        setDisplay(target);
+      }
     };
     frame.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame.current);
-  }, [inView, target, duration, match]);
+  }, [inView, target, duration]);
 
   if (!match) return <span className={className}>{value}</span>;
 
