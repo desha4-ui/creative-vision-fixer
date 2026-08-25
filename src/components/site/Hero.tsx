@@ -42,7 +42,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={200} variant="reveal-img" className="mt-14">
-          <div className="relative overflow-hidden rounded-4xl shadow-estate">
+          <div className="relative overflow-hidden rounded-2xl shadow-estate sm:rounded-3xl lg:rounded-4xl">
             <img
               src={heroEstate}
               alt="Modern luxury villa at golden hour with reflecting pool"
