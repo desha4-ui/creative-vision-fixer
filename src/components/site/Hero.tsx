@@ -50,7 +50,7 @@ export function Hero() {
               height={1024}
               className="h-[26rem] w-full object-cover sm:h-[34rem]"
             />
-            <div className="absolute inset-x-4 bottom-4 grid gap-px overflow-hidden rounded-3xl bg-border/60 sm:inset-x-6 sm:bottom-6 sm:grid-cols-3">
+            <div className="absolute inset-x-4 bottom-4 grid gap-px overflow-hidden rounded-2xl bg-border/60 sm:inset-x-6 sm:bottom-6 sm:grid-cols-3">
               {searchFacets.map((f) => (
                 <div key={f.label} className="bg-card/92 px-6 py-5 backdrop-blur-md">
                   <p className="eyebrow">{f.label}</p>
