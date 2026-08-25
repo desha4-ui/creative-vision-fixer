@@ -42,7 +42,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={200} variant="reveal-img" className="mt-14">
-          <div className="relative overflow-hidden rounded-4xl shadow-estate">
+          <div className="relative overflow-hidden rounded-2xl shadow-estate sm:rounded-3xl lg:rounded-4xl">
             <img
               src={heroEstate}
               alt="Modern luxury villa at golden hour with reflecting pool"
@@ -50,7 +50,7 @@ export function Hero() {
               height={1024}
               className="h-[26rem] w-full object-cover sm:h-[34rem]"
             />
-            <div className="absolute inset-x-4 bottom-4 grid gap-px overflow-hidden rounded-2xl bg-border/60 sm:inset-x-6 sm:bottom-6 sm:grid-cols-3">
+            <div className="absolute inset-x-3 bottom-3 grid gap-px overflow-hidden rounded-xl bg-border/60 sm:inset-x-6 sm:bottom-6 sm:grid-cols-3 sm:rounded-2xl">
               {searchFacets.map((f) => (
                 <div key={f.label} className="bg-card/92 px-6 py-5 backdrop-blur-md">
                   <p className="eyebrow">{f.label}</p>
