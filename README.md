@@ -1,12 +1,12 @@
-# Creative Vision Fixer
+# Creative Vision Studio
 
-https://github.com/amin3said66-prog/creative-vision-studio clone this and run when fix any have errors
+clone this repo https://github.com/aminone070/creative-vision-studio
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/a98f11e6-1ecf-4952-9ee9-c63a8bd5c59c).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/60a830f0-36bc-4341-9ac4-02fd2902868e).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
